@@ -6,7 +6,7 @@
   "author": "Hugo H. Fernandez",
   "license": "ISC",
   "scripts": {
-    "start": "tsc && node dist/src/app.js",
+    "start": "tsc && node dist/app.js",
     "public": "standard-version",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix"

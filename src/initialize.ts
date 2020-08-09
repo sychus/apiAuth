@@ -3,7 +3,6 @@ import { Express } from 'express';
 import { checkPassword } from './controller/ldap';
 
 export function initAPI(app: Express) {
-
     // Configura Express
     app.use(bodyParser.json({ limit: '150mb' }));
     app.use(bodyParser.urlencoded({
@@ -30,13 +29,13 @@ export function initAPI(app: Express) {
     })
 
 
-    /**
- * Realiza la validación en servidor de login
+/**
+ * Realiza la validación en servidor de authentication
  * @param {string} username nombre de usuario (DNI)
  * @param {string} password Password de la cuenta
- * @post /login
+ * @post /authentication
  */
-    app.post('/login', async (req, res, next) => {
+    app.post('/authentication', async (req, res, next) => {
         try {
             if (!req.body.username || !req.body.password) {
                 return next(403);

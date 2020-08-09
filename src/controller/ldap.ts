@@ -1,4 +1,4 @@
-import {configuration} from '../../config.private';
+import { ldapServer } from '../config';
 const isReachable = require('is-reachable');
 import * as ldapjs from 'ldapjs';
 
@@ -8,20 +8,19 @@ function sleep(ms) {
 }
 
 export async function checkPassword(user, password): Promise<any> {
-    const server = configuration.server.ldap.host + configuration.server.ldap.port;
-    const ladpPromise = new Promise((resolve, reject) => {  
+    const server = `${ldapServer.host}:${ldapServer.port}`;
+    const ladpPromise = new Promise((resolve, reject) => {
         isReachable(server).then(reachable => {
             if (!reachable) {
                 return resolve('timeout');
             }
             // Conecta a LDAP
-            const dn = 'uid=' + user + ',' + configuration.server.ldap.ldapOu;
+            const dn = 'uid=' + user + ',' + ldapServer.ou;
             const ldap = ldapjs.createClient({
-                url: `ldap://${configuration.server.ldap.host}`,
+                url: `ldap://${ldapServer.host}`,
                 timeout: 4000,
                 connectTimeout: 4000,
             });
-    
             ldap.on('connectError', (err) => {
                 return resolve('timeout');
             });
