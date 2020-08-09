@@ -1,13 +1,13 @@
 {
   "name": "andes-auth",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Authentication service",
   "main": "dist/app.js",
   "author": "Hugo H. Fernandez",
   "license": "ISC",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "public": "standard-version",
+    "release": "standard-version",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix"
   },
