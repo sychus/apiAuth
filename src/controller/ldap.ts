@@ -47,11 +47,11 @@ export async function checkPassword(user, password): Promise<any> {
                         }
                         searchResult.on('searchEntry', (entry) => {
                             const dto = {
-                                nombre: entry.object.givenName ? entry.object.givenName : '',
-                                apellido: entry.object.sn ? entry.object.sn : '',
-                                email: entry.object.mail ? entry.object.mail : '',
-                                telefono: entry.object.telephoneNumber ? entry.object.telephoneNumber : '', 
-                                du: entry.object.uid ? entry.object.uid : ''
+                                nombre: entry.object?.givenName,
+                                apellido: entry.object?.sn,
+                                email: entry.object?.mail,
+                                telefono: entry.object?.telephoneNumber,
+                                du: entry.object?.uid
                             }
                             return resolve(dto);
                         });
