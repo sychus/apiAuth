@@ -1,6 +1,5 @@
 import * as bodyParser from 'body-parser';
 import { Express } from 'express';
-import { checkPassword } from './controller/ldap';
 
 export function initAPI(app: Express) {
     // Configura Express
@@ -22,33 +21,8 @@ export function initAPI(app: Express) {
         }
     });
 
-
-    // Solo realiza un check de alive
-    app.get('/alive', (req, res, next) => {
-        return res.send({ status: 'Auth server alive!' })
-    })
-
-
-/**
- * Realiza la validación en servidor de authentication
- * @param {string} username nombre de usuario (DNI)
- * @param {string} password Password de la cuenta
- * @post /authentication
- */
-    app.post('/authentication', async (req, res, next) => {
-        try {
-            if (!req.body.username || !req.body.password) {
-                return next(403);
-            }
-            const ldapUser = await checkPassword(req.body.username, req.body.password);
-            if (ldapUser) {
-                res.json({nombre: ldapUser.givenName, apellido: ldapUser.sn, email: ldapUser.mail, telefono: ldapUser.telephoneNumber, du: ldapUser.uid }).status(200);
-            }
-            else {
-                return next(403);
-            }
-        } catch (error) {
-            return next(403);
-        }
-    });
+    // Ruteos
+    const ldapRoute = require('./routes/ldap');
+    app.use('/alive', ldapRoute);
+    app.use('/authentication', ldapRoute);
 }
