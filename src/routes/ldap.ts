@@ -23,7 +23,7 @@ router.post('/', async (req, res, next) => {
         }
         const ldapUser = await checkPassword(req.body.username, req.body.password);
         if (ldapUser) {
-            res.status(200).send({nombre: ldapUser.givenName, apellido: ldapUser.sn, email: ldapUser.mail, telefono: ldapUser.telephoneNumber, du: ldapUser.uid });
+            res.status(200).send({nombre: ldapUser.nombre, apellido: ldapUser.apellido, email: ldapUser.email, telefono: ldapUser.telefono, du: ldapUser.du });
         }
         else {
             return next(403);
