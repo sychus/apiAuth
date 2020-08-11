@@ -22,7 +22,6 @@ export function initAPI(app: Express) {
     });
 
     // Ruteos
-    const ldapRoute = require('./routes/ldap');
-    app.use('/alive', ldapRoute);
-    app.use('/authentication', ldapRoute);
+    app.use('/alive', require('./routes/alive'));
+    app.use('/auth', require('./routes/auth'));
 }

@@ -3,14 +3,6 @@ const router = express.Router()
 import { checkPassword } from '../controller/ldap';
 
 /**
- * Realiza la verificación si el servicio esta vivo.
- * @get /
- */
-router.get('/', function (req, res) {
-    return res.send({ status: 'Auth server alive!' })
-})
-
-/**
  * Realiza la validación en servidor de authentication
  * @param {string} username nombre de usuario (DNI)
  * @param {string} password Password de la cuenta
