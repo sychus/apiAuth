@@ -1,4 +1,4 @@
-var express = require('express')
+let express = require('express')
 const router = express.Router()
 import { checkPassword } from '../controller/ldap';
 
