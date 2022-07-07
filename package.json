@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "is-reachable": "^4.0.0",
     "ldapjs": "^1.0.2",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "prettier": "^2.0.5"
   },
   "devDependencies": {
